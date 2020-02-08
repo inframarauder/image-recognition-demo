@@ -34,7 +34,14 @@ const form = document.getElementById("form");
 form.addEventListener("submit", e => {
   e.preventDefault();
   const [file] = document.getElementById("file").files;
-  const img = document.getElementById("img");
-  img.setAttribute("src", `./images/${file.name}`);
-  setPrediction(img);
+  if (!file) {
+    alert("Please select a file!");
+  } else {
+    let imageHolder = document.getElementById("imageHolder");
+    imageHolder.innerHTML = `
+    <img src="./images/${file.name}" id="img" alt="demopic" />
+    `;
+
+    setPrediction(document.getElementById("img"));
+  }
 });
